@@ -1,0 +1,43 @@
+/* ============================================================
+   CampusConnect - Secondary Stylesheet & Legacy Form Overrides
+   ============================================================ */
+
+@import url("style.css");
+
+/* Form card styling compatibility */
+form {
+    max-width: 720px;
+    margin: 20px auto;
+    background: var(--bg-card, #ffffff);
+    padding: 30px;
+    border-radius: var(--radius-md, 10px);
+    box-shadow: var(--shadow-md, 0 4px 14px rgba(23, 59, 103, 0.08));
+    border: 1px solid var(--border, #e2e8f0);
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary, #1e293b);
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 8px;
+    border: 1.5px solid var(--border, #e2e8f0);
+    border-radius: var(--radius-sm, 6px);
+    font-size: 14.5px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    margin-top: 25px;
+    width: 100%;
+}
