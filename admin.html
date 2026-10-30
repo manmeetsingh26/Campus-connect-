@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Helpdesk Console | CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">CC</div>
+            <div class="logo-text">Campus<span>Connect</span></div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk & Queries</a>
+            <a href="students.html">Student Directory</a>
+            <a href="admin.html" class="active">Admin Console</a>
+            <div id="system-status" class="system-status-pill">
+                <span class="status-dot"></span> Checking Status...
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="hero" style="padding: 45px 20px 35px;">
+        <span class="hero-badge" style="background:#fee2e2;color:#b91c1c;">Staff & Administrator Portal</span>
+        <h1 style="font-size: 32px;">Helpdesk Inquiry Management</h1>
+        <p class="desc" style="margin-bottom: 0;">
+            Review incoming student tickets, prioritize grievances, update resolution statuses, and respond to students.
+        </p>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- KPI Analytics -->
+        <div class="stats-grid" style="margin-bottom: 30px;">
+            <div class="stat-card">
+                <div class="stat-icon purple">📥</div>
+                <div class="stat-info">
+                    <h4 id="stat-total-tickets">--</h4>
+                    <p>Total Inquiries</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon blue">⚡</div>
+                <div class="stat-info">
+                    <h4 id="stat-open-tickets">--</h4>
+                    <p>Unassigned / Open</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon amber">⏳</div>
+                <div class="stat-info">
+                    <h4 id="stat-progress-tickets">--</h4>
+                    <p>Under Investigation</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">✅</div>
+                <div class="stat-info">
+                    <h4 id="stat-resolved-tickets">--</h4>
+                    <p>Resolved</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="table-toolbar">
+            <div class="search-filter-box">
+                <input type="text" id="adminTicketSearch" placeholder="Search by Ticket ID, Student, or Keyword..." style="flex: 2;">
+                <select id="adminStatusFilter" style="flex: 1;">
+                    <option value="All">All Statuses</option>
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Closed">Closed</option>
+                </select>
+                <select id="adminTypeFilter" style="flex: 1;">
+                    <option value="All">All Categories</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Complaint">Complaint</option>
+                    <option value="Technical Support">Technical</option>
+                    <option value="Feedback">Feedback</option>
+                </select>
+            </div>
+
+            <button class="btn btn-secondary" onclick="exportTicketsCSV()">
+                📥 Export CSV Report
+            </button>
+        </div>
+
+        <!-- Tickets Data Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticket Code</th>
+                        <th>Student & Department</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Subject</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTicketsTableBody">
+                    <!-- Populated via script.js -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- MODAL: RESPOND / UPDATE TICKET -->
+    <div id="respondTicketModal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>Manage Ticket: <span id="modalDisplayCode" style="color:var(--accent);">--</span></h3>
+                <button class="modal-close" onclick="closeModal('respondTicketModal')">&times;</button>
+            </div>
+            <form id="adminRespondForm" style="box-shadow:none; padding:0; margin:0; border:none;">
+                <input type="hidden" id="modalTicketCode">
+                <div class="modal-body">
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid #e2e8f0;margin-bottom:18px;">
+                        <p style="font-size:12px;color:#64748b;text-transform:uppercase;font-weight:600;">Student Information</p>
+                        <p id="modalStudentInfo" style="font-weight:600;color:#173b67;margin-top:2px;font-size:15px;">--</p>
+                        
+                        <p style="font-size:12px;color:#64748b;text-transform:uppercase;font-weight:600;margin-top:10px;">Subject</p>
+                        <p id="modalSubject" style="font-weight:600;color:#1e293b;margin-top:2px;font-size:14.5px;">--</p>
+
+                        <p style="font-size:12px;color:#64748b;text-transform:uppercase;font-weight:600;margin-top:10px;">Student Message</p>
+                        <p id="modalMessage" style="color:#334155;margin-top:2px;font-size:14px;background:white;padding:10px;border-radius:4px;border:1px solid #e2e8f0;">--</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modalTicketStatus">Update Ticket Status <span class="required">*</span></label>
+                        <select id="modalTicketStatus" required>
+                            <option value="Open">Open (Pending Assignment)</option>
+                            <option value="In Progress">In Progress (Under Review)</option>
+                            <option value="Resolved">Resolved (Solution Provided)</option>
+                            <option value="Closed">Closed (Completed)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modalStaffResponse">Official Staff Response / Resolution Note</label>
+                        <textarea id="modalStaffResponse" rows="4" placeholder="Enter resolution details, action taken, or instructions for the student..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('respondTicketModal')">Cancel</button>
+                    <button type="submit" class="btn btn-accent">Save & Update Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CampusConnect | Student Helpdesk & Management System</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk</a>
+            <a href="students.html">Student Management</a>
+            <a href="admin.html">Admin Console</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
