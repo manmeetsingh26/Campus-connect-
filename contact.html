@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk & Inquiry Portal | CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">CC</div>
+            <div class="logo-text">Campus<span>Connect</span></div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html" class="active">Helpdesk & Queries</a>
+            <a href="students.html">Student Directory</a>
+            <a href="admin.html">Admin Console</a>
+            <div id="system-status" class="system-status-pill">
+                <span class="status-dot"></span> Checking Status...
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="hero" style="padding: 50px 20px 40px;">
+        <span class="hero-badge">Student Helpdesk & Support</span>
+        <h1 style="font-size: 34px;">Helpdesk & Query Center</h1>
+        <p class="desc" style="margin-bottom: 0;">
+            Submit your grievances, academic concerns, or technical requests. 
+            Track ticket progress in real-time with your unique ticket reference code.
+        </p>
+    </section>
+
+    <main class="main-content">
+        <!-- Interactive Navigation Tabs -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" data-target="tab-submit">Submit New Query</button>
+            <button class="tab-btn" data-target="tab-track">Track Ticket Status</button>
+        </div>
+
+        <!-- TAB 1: SUBMIT QUERY FORM -->
+        <div id="tab-submit" class="tab-content active">
+            <div class="form-container">
+                <div style="margin-bottom: 24px; text-align: center;">
+                    <h2 style="color: var(--primary); font-size: 24px;">Submit Helpdesk Inquiry</h2>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 4px;">
+                        Our student helpdesk team typically responds within 24 to 48 working hours.
+                    </p>
+                </div>
+
+                <form id="contactForm" style="box-shadow:none; padding:0; margin:0; border:none; max-width:100%;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="studentId">Student ID <span class="required">*</span></label>
+                            <input type="text" id="studentId" placeholder="e.g. STU2026001" required>
+                            <div class="form-help">Your official university registration number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">University Email <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="name@campus.edu" required>
+                            <div class="form-help">Updates will be logged to this email</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department">
+                                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                                <option value="Electronics & Communication">Electronics & Communication</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Civil & Environmental Engineering">Civil & Environmental Engineering</option>
+                                <option value="Business Administration">Business Administration</option>
+                                <option value="Other Department">Other Department</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="queryType">Query Category <span class="required">*</span></label>
+                            <select id="queryType" required>
+                                <option value="">Select Category</option>
+                                <option value="Academic">Academic (Courses, Exams, Grades)</option>
+                                <option value="Complaint">Complaint / Grievance</option>
+                                <option value="Technical Support">Technical Support (Wi-Fi, Portal, Labs)</option>
+                                <option value="Feedback">Campus Feedback & Suggestions</option>
+                                <option value="Hostel & Facilities">Hostel & Campus Facilities</option>
+                                <option value="Financial & Fees">Accounts & Fee Receipts</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority">Priority Level</label>
+                            <select id="priority">
+                                <option value="Low">Low - General inquiry</option>
+                                <option value="Medium" selected>Medium - Normal priority</option>
+                                <option value="High">High - Urgent academic/technical issue</option>
+                                <option value="Urgent">Urgent - Critical emergency</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="subject">Subject Summary <span class="required">*</span></label>
+                            <input type="text" id="subject" placeholder="Brief 1-sentence summary of your issue" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">Detailed Explanation <span class="required">*</span></label>
+                            <textarea id="message" rows="5" placeholder="Please provide specific details, room number, course code, or relevant info..." required></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent" style="width: 100%; padding: 14px; font-size: 16px;">
+                        Submit Query & Generate Ticket
+                    </button>
+
+                    <div id="response" style="margin-top: 15px;"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- TAB 2: TRACK TICKET STATUS -->
+        <div id="tab-track" class="tab-content">
+            <div class="form-container" style="max-width: 800px;">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="color: var(--primary); font-size: 24px;">Track Existing Inquiry</h2>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 4px;">
+                        Enter your Ticket Reference Code (e.g. <code>CC-2026-1001</code>) or your Student ID.
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="trackInput" placeholder="Enter Ticket Code or Student ID (e.g. CC-2026-1001 or STU2026001)" style="flex: 1;">
+                    <button id="trackTicketBtn" class="btn btn-accent">Track Status</button>
+                </div>
+
+                <div id="trackResultContainer">
+                    <!-- Results dynamically loaded here -->
+                    <div style="text-align: center; padding: 40px 20px; color: var(--text-secondary);">
+                        <div style="font-size: 36px; margin-bottom: 10px;">🎫</div>
+                        <p>Enter your ticket code above to view live progress, officer assignments, and resolution notes.</p>
+                        <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px;">
+                            Try sample ticket: <a href="javascript:void(0)" onclick="document.getElementById('trackInput').value='CC-2026-1001';document.getElementById('trackTicketBtn').click();">CC-2026-1001</a> or <a href="javascript:void(0)" onclick="document.getElementById('trackInput').value='STU2026001';document.getElementById('trackTicketBtn').click();">STU2026001</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Knowledgebase Section -->
+        <div style="margin-top: 60px;">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common student inquiries before submitting a ticket</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How long does it take for a helpdesk ticket to be resolved?
+                        <span>▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Standard queries are typically reviewed within 24 to 48 business hours. High and urgent priority tickets (e.g., examination hall ticket issues or portal lockouts) are expedited by the on-duty academic registrar within 4 to 8 hours.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I connect to the CampusConnect Wi-Fi network?
+                        <span>▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Connect to <code>CampusConnect-Student</code> SSID. When prompted, enter your official Student ID (e.g., <code>STU2026001</code>) as identity and your portal account password. For connectivity drops, submit a ticket under "Technical Support".
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I update or add information to a submitted ticket?
+                        <span>▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! You can track your ticket using your Ticket ID under the "Track Ticket Status" tab. If you need to submit supplementary documents or follow-ups, submit a quick reply referencing your ticket code.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Where can I request official academic transcripts or bona fide certificates?
+                        <span>▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Submit a ticket with category set to "Academic" and subject "Transcript Request". Please include your semester marksheet requirements and delivery preferences.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CampusConnect | Student Helpdesk & Management System</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk</a>
+            <a href="students.html">Student Management</a>
+            <a href="admin.html">Admin Console</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
