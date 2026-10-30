@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "studentId": "STU2026001",
+    "fullName": "Aarav Sharma",
+    "email": "aarav.sharma@campus.edu",
+    "phone": "+91 9876543210",
+    "department": "Computer Science & Engineering",
+    "semester": 6,
+    "cgpa": 8.85,
+    "status": "Active",
+    "createdAt": "2026-10-15 09:30:00"
+  },
+  {
+    "id": 2,
+    "studentId": "STU2026002",
+    "fullName": "Priya Patel",
+    "email": "priya.patel@campus.edu",
+    "phone": "+91 9876543211",
+    "department": "Electronics & Communication",
+    "semester": 4,
+    "cgpa": 9.12,
+    "status": "Active",
+    "createdAt": "2026-10-16 11:20:00"
+  },
+  {
+    "id": 3,
+    "studentId": "STU2026003",
+    "fullName": "Rohan Mehta",
+    "email": "rohan.mehta@campus.edu",
+    "phone": "+91 9876543212",
+    "department": "Mechanical Engineering",
+    "semester": 8,
+    "cgpa": 7.94,
+    "status": "Active",
+    "createdAt": "2026-10-18 14:15:00"
+  },
+  {
+    "id": 4,
+    "studentId": "STU2026004",
+    "fullName": "Ananya Iyer",
+    "email": "ananya.iyer@campus.edu",
+    "phone": "+91 9876543213",
+    "department": "Business Administration",
+    "semester": 2,
+    "cgpa": 8.4,
+    "status": "Active",
+    "createdAt": "2026-10-20 10:00:00"
+  },
+  {
+    "id": 5,
+    "studentId": "STU2026005",
+    "fullName": "Vikram Singh",
+    "email": "vikram.singh@campus.edu",
+    "phone": "+91 9876543214",
+    "department": "Computer Science & Engineering",
+    "semester": 5,
+    "cgpa": 8.2,
+    "status": "Active",
+    "createdAt": "2026-10-22 16:45:00"
+  },
+  {
+    "id": 6,
+    "studentId": "STU2026006",
+    "fullName": "Neha Gupta",
+    "email": "neha.gupta@campus.edu",
+    "phone": "+91 9876543215",
+    "department": "Civil & Environmental Engineering",
+    "semester": 3,
+    "cgpa": 8.65,
+    "status": "Active",
+    "createdAt": "2026-10-24 13:10:00"
+  }
+]
