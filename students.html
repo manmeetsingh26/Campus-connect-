@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System | CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">CC</div>
+            <div class="logo-text">Campus<span>Connect</span></div>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk & Queries</a>
+            <a href="students.html" class="active">Student Directory</a>
+            <a href="admin.html">Admin Console</a>
+            <div id="system-status" class="system-status-pill">
+                <span class="status-dot"></span> Checking Status...
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="hero" style="padding: 45px 20px 35px;">
+        <span class="hero-badge">Academic Records</span>
+        <h1 style="font-size: 32px;">Student Directory & Management</h1>
+        <p class="desc" style="margin-bottom: 0;">
+            Browse enrolled students, filter records by department and semester, and register new university admissions.
+        </p>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Table Toolbar -->
+        <div class="table-toolbar">
+            <div class="search-filter-box">
+                <input type="text" id="studentSearchInput" placeholder="Search by Student Name, ID, or Email..." style="flex: 2;">
+                <select id="deptFilterSelect" style="flex: 1.2;">
+                    <option value="All">All Departments</option>
+                    <option value="Computer Science & Engineering">Computer Science</option>
+                    <option value="Electronics & Communication">Electronics</option>
+                    <option value="Mechanical Engineering">Mechanical</option>
+                    <option value="Civil & Environmental Engineering">Civil</option>
+                    <option value="Business Administration">Business Admin</option>
+                </select>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <span id="studentCountBadge" class="badge badge-open" style="font-size: 13px; padding: 6px 14px;">Loading...</span>
+                <button class="btn btn-accent" onclick="openModal('addStudentModal')">
+                    + Register Student
+                </button>
+            </div>
+        </div>
+
+        <!-- Student Data Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name & Email</th>
+                        <th>Department</th>
+                        <th>Semester</th>
+                        <th>CGPA</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsTableBody">
+                    <!-- Populated dynamically via script.js -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- MODAL: ADD STUDENT -->
+    <div id="addStudentModal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>Register New Student</h3>
+                <button class="modal-close" onclick="closeModal('addStudentModal')">&times;</button>
+            </div>
+            <form id="addStudentForm" style="box-shadow:none; padding:0; margin:0; border:none;">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="addStudentId">Student ID <span class="required">*</span></label>
+                            <input type="text" id="addStudentId" placeholder="e.g. STU2026099" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addFullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="addFullName" placeholder="e.g. John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addEmail">University Email <span class="required">*</span></label>
+                            <input type="email" id="addEmail" placeholder="john.doe@campus.edu" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addPhone">Contact Phone</label>
+                            <input type="tel" id="addPhone" placeholder="+91 9876543210">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="addDepartment">Department <span class="required">*</span></label>
+                            <select id="addDepartment" required>
+                                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                                <option value="Electronics & Communication">Electronics & Communication</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Civil & Environmental Engineering">Civil & Environmental Engineering</option>
+                                <option value="Business Administration">Business Administration</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addSemester">Current Semester</label>
+                            <input type="number" id="addSemester" min="1" max="10" value="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="addCgpa">Initial CGPA</label>
+                            <input type="number" id="addCgpa" min="0" max="10" step="0.01" value="8.00" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addStudentModal')">Cancel</button>
+                    <button type="submit" class="btn btn-accent">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: VIEW STUDENT DETAILS -->
+    <div id="studentDetailsModal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>Student Profile Record</h3>
+                <button class="modal-close" onclick="closeModal('studentDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="studentDetailsBody">
+                <!-- Injected via JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('studentDetailsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CampusConnect | Student Helpdesk & Management System</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk</a>
+            <a href="students.html">Student Management</a>
+            <a href="admin.html">Admin Console</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
