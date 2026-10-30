@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect | Student Helpdesk & Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">CC</div>
+            <div class="logo-text">Campus<span>Connect</span></div>
+        </a>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="contact.html">Helpdesk & Queries</a>
+            <a href="students.html">Student Directory</a>
+            <a href="admin.html">Admin Console</a>
+            <div id="system-status" class="system-status-pill">
+                <span class="status-dot"></span> Checking Status...
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-badge">University Portal 2026</span>
+        <h1>Welcome to CampusConnect</h1>
+        <p class="tagline">Your Campus. Your Voice. Our Responsibility.</p>
+        <p class="desc">
+            A unified full-stack platform for university students to submit academic queries, 
+            lodge campus complaints, track helpdesk resolutions, and access student directory records.
+        </p>
+        <div class="hero-actions">
+            <a href="contact.html" class="btn btn-accent">Submit New Query</a>
+            <a href="contact.html#track" class="btn btn-secondary">Track Existing Ticket</a>
+            <a href="students.html" class="btn btn-secondary">Student Management</a>
+        </div>
+
+        <!-- Quick Ticket Lookup Bar -->
+        <div style="max-width: 540px; margin: 30px auto 0; background: white; padding: 8px 12px; border-radius: var(--radius-sm); box-shadow: var(--shadow-md); display: flex; gap: 8px; border: 1px solid var(--border);">
+            <input type="text" id="quickTrackInput" placeholder="Quick Track Ticket ID (e.g. CC-2026-1001)..." style="border: none; outline: none; padding: 10px 14px; flex: 1; font-size: 14px;">
+            <button class="btn btn-accent btn-sm" onclick="quickTrackTicket()" style="padding: 10px 18px;">Track</button>
+        </div>
+    </section>
+
+    <!-- Key Metrics & Analytics Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">🎓</div>
+                <div class="stat-info">
+                    <h4 id="stat-total-students">--</h4>
+                    <p>Enrolled Students</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple">📋</div>
+                <div class="stat-info">
+                    <h4 id="stat-total-tickets">--</h4>
+                    <p>Total Helpdesk Inquiries</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon amber">⏳</div>
+                <div class="stat-info">
+                    <h4 id="stat-open-tickets">--</h4>
+                    <p>Open / Pending Issues</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">✅</div>
+                <div class="stat-info">
+                    <h4 id="stat-resolved-tickets">--</h4>
+                    <p>Resolved Queries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Features & Portals -->
+    <main class="main-content">
+        <div class="section-header">
+            <h2>Campus Services & Portals</h2>
+            <p>Access integrated academic support, administrative desks, and record services</p>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <span class="card-icon">📚</span>
+                <h3>Academic Support</h3>
+                <p>Course enrollment queries, semester exam schedules, grade review requests, and faculty advisory appointments.</p>
+                <a href="contact.html" class="card-link">Lodge Academic Request &rarr;</a>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">🛠️</span>
+                <h3>Technical & IT Helpdesk</h3>
+                <p>Campus Wi-Fi connectivity, student portal password resets, digital library access, and computer lab equipment assistance.</p>
+                <a href="contact.html" class="card-link">Report IT Issue &rarr;</a>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">⚖️</span>
+                <h3>Grievance & Facilities</h3>
+                <p>Hostel room maintenance, cafeteria hygiene feedback, campus transit schedules, and library study space reservations.</p>
+                <a href="contact.html" class="card-link">File a Grievance &rarr;</a>
+            </div>
+
+            <div class="card">
+                <span class="card-icon">👥</span>
+                <h3>Student Management System</h3>
+                <p>View student academic profiles, manage department records, filter by semester and CGPA, and register new enrollments.</p>
+                <a href="students.html" class="card-link">Open Student Directory &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Campus Notice Board -->
+        <div style="margin-top: 60px;">
+            <div class="section-header">
+                <h2>Campus Notice Board</h2>
+                <p>Latest updates and official announcements from the helpdesk cell</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                <div style="background: white; border-radius: var(--radius-md); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="badge badge-open">Academic</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">October 28, 2026</span>
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 17px; margin-bottom: 8px;">Mid-Term Examination Hall Tickets Released</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Students are requested to download hall tickets from the student portal before Friday. Report discrepancies to the Academic cell.
+                    </p>
+                </div>
+
+                <div style="background: white; border-radius: var(--radius-md); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="badge badge-priority-high">Technical</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">October 29, 2026</span>
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 17px; margin-bottom: 8px;">Campus Wi-Fi Maintenance Window</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Routine router upgrades will occur in North Block from 11:00 PM to 01:00 AM on Saturday. Temporary interruption may occur.
+                    </p>
+                </div>
+
+                <div style="background: white; border-radius: var(--radius-md); padding: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span class="badge badge-resolved">Facilities</span>
+                        <span style="font-size: 12px; color: var(--text-muted);">October 30, 2026</span>
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 17px; margin-bottom: 8px;">Central Library Extended Hours</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">
+                        Following student feedback ticket CC-2026-1004, central library reading halls will remain open until 10:00 PM on weekends.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CampusConnect | Student Helpdesk & Management System</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Helpdesk</a>
+            <a href="students.html">Student Management</a>
+            <a href="admin.html">Admin Console</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
